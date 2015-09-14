@@ -1,0 +1,21 @@
+{
+  "name": "p1",
+  "version": "0.0.0",
+  "moduleType": [
+    "globals",
+    "node"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "lodash": "~3.10.1",
+    "tracking": "tracking.js#~1.1.1"
+  }
+}

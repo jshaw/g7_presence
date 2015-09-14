@@ -1,0 +1,39 @@
+<!doctype html>  
+<html lang="en">  
+    <head>
+        <link rel="stylesheet" type="text/css" href="/style.css">
+    </head>
+    <body id="Body">
+        <h1>Presence</h1>
+        <script src="/jquery/dist/jquery.js"></script>
+        <script src="/socket.io/socket.io.js"></script>
+        <script>
+            $(function() {
+                // var socket = io.connect('http://localhost:4200');
+                var socket = io.connect('http://192.168.0.102:4200');
+                socket.on('connect', function(data) {
+                    socket.emit('join', 'Hello World from client');
+                });
+                socket.on('messages', function(data) {
+                    console.log(data);
+                    checkData(data);
+                });
+
+                if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+                    console.log('physical');
+                    socket.emit('messages', 'physical');
+
+                } else {
+                    console.log('Desktop');
+                    socket.emit('messages', 'remote');
+                }
+            });
+
+            function checkData(data){
+                console.log('*** data', data);
+                var rgb = data.rgb;
+                $('body').css('background-color', rgb);
+            }
+        </script>
+    </body>
+</html> 
